@@ -1,21 +1,45 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import Login from './src/components/login/Login';
+import * as React from "react";
+import { useFonts } from "expo-font";
+import { StyleSheet} from "react-native";
+import { SafeAreaView } from 'react-native-safe-area-context';
+import Login from "./src/views/Login/Login";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import EsqueceuSenha from "./src/views/EsqueceuSenha/EsqueceuSenha";
+import Cadastro from "./src/views/Cadastro/Cadastro";
 
-export default function App() {
+
+const Stack = createStackNavigator()
+
+export default App = () => {
+  const [fontsLoaded, error] = useFonts({
+    "Poppins-ExtraLight": require("./assets/fonts/Poppins-ExtraLight.ttf"),
+    "Poppins-Light": require("./assets/fonts/Poppins-Light.ttf"),
+    "Poppins-Regular": require("./assets/fonts/Poppins-Regular.ttf"),
+  });
+
+  if (!fontsLoaded) return null
+
   return (
-    <View style={styles.container}>
-      <StatusBar style="auto" />
-      <Login/>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{headerShown: false }}  >
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="RememberPassword" component={EsqueceuSenha} />
+          <Stack.Screen name="Cadastro" component={Cadastro} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  },
+  text: {
+    fontSize: 25,
+    fontWeight: '500',
+    fontFamily: "Poppins-Light"
   },
 });
