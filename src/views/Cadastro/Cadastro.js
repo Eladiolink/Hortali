@@ -6,6 +6,7 @@ import InputForm from "../../components/InputFom/InputForm";
 import PickerForm from "../../components/PickerForm/PickerForm";
 import MessageForm from "../../components/MessageForm/MessageForm";
 import validateCpfCnpj from "../../../utils/validateCpfCnpj";
+import validateEmail from "../../../utils/validateEmail";
 
 
 export default ({ navigation }) => {
@@ -35,8 +36,7 @@ export default ({ navigation }) => {
             return
         }
 
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
+        if (!validateEmail(email)) {
             setMessage("Insira um email válido")
             return
         }

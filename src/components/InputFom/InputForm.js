@@ -20,6 +20,7 @@ export default props => {
                 onFocus={() => setIsFocusedEmail(true)}
                 onBlur={() => setIsFocusedEmail(false)}
                 onChangeText={props.onChange}
+                maxLength={props.maxLength}
             />
         </View>
     )

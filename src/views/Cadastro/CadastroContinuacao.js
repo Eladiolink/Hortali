@@ -6,12 +6,45 @@ import InputForm from "../../components/InputFom/InputForm";
 import { Picker } from "@react-native-picker/picker";
 import PickerForm from "../../components/PickerForm/PickerForm";
 import MessageForm from "../../components/MessageForm/MessageForm";
+import validaeCEP from "../../../utils/validaeCEP";
 
 
 export default ({ navigation }) => {
-    const [email, onChangeEmail] = useState('');
-    const [senha, onChangeSenha] = useState('');
+    const [data, onChangeData] = useState('');
+    const [telefone, onChangeTelefone] = useState('');
+    const [rua, onChangeRua] = useState('')
+    const [bairro, onChangeBairro] = useState('')
+    const [numeroCasa, onChangeNumeroCasa] = useState('')
+    const [cidade, onChangeCidade] = useState('')
+    const [UF, onChangeUf] = useState('')
+    const [complemento, onChangeComplemento] = useState('')
+    const [CEP, onChangeCep] = useState('')
+
     const [message, setMessage] = useState("")
+
+    validate = () => {
+        if (
+            data == "" ||
+            telefone == "" ||
+            rua == "" ||
+            bairro == "" ||
+            numeroCasa == "" ||
+            cidade == "" ||
+            UF == "" ||
+            complemento == "" ||
+            CEP == ""
+        ) {
+            setMessage("Os campos não podem ser vazios!")
+            return
+        }
+
+        if(!validaeCEP(CEP)){
+            setMessage("Informe um CEP válido!")
+            return
+        }
+
+        console.log("OK")
+    }
 
     return (
         <View>
@@ -20,23 +53,23 @@ export default ({ navigation }) => {
                 <LogoInitial marginTop={0} />
 
                 <MessageForm message={message} />
-                <InputForm label="Data de Nascimento" placeholder="dd/mm/aaaa" keyboardType="numeric" />
-                <InputForm label="Telefone/Celular" placeholder="(xx) xxxx-xxxx" keyboardType="numeric" />
-                <InputForm label="Rua" placeholder="ex: Rua Osmundo..." />
+                <InputForm label="Data de Nascimento" placeholder="dd/mm/aaaa" keyboardType="numeric" onChange={(text) => onChangeData(text)} />
+                <InputForm label="Telefone/Celular" placeholder="(xx) xxxx-xxxx" keyboardType="numeric" onChange={text => onChangeTelefone(text)} />
+                <InputForm label="Rua" placeholder="ex: Rua Osmundo..." onChange={text => onChangeRua(text)} />
 
                 <View style={styles.Dual}>
-                    <InputForm label="Bairro" placeholder="ex: Ibura" mr={5} flex={3} />
-                    <InputForm label="Nº" keyboardType="numeric" mr={5} flex={1} />
+                    <InputForm label="Bairro" placeholder="ex: Ibura" mr={5} flex={3} onChange={text => onChangeBairro(text)} />
+                    <InputForm label="Nº" keyboardType="numeric" mr={5} flex={1} onChange={text => onChangeNumeroCasa(text)} />
                 </View>
 
                 <View style={styles.Dual}>
-                    <InputForm label="Cidade" mr={5} flex={3} />
-                    <InputForm label="UF" mr={5} flex={1} />
+                    <InputForm label="Cidade" mr={5} flex={3} onChange={ text => onChangeCidade(text) } />
+                    <InputForm label="UF" mr={5} flex={1} maxLength={2} onChange={ text => onChangeUf(text) } />
                 </View>
-                <InputForm label="Complemento" />
-                <InputForm label="CEP" keyboardType="numeric" placeholder="xxxxxx-xxx" />
+                <InputForm label="Complemento" onChange={ text=>onChangeComplemento(text) } />
+                <InputForm label="CEP" keyboardType="numeric" placeholder="xxxxxx-xxx" onChange={ text=>onChangeCep(text) } />
                 <View style={styles.BtnContainer}>
-                    <TouchableOpacity style={styles.TouchableContainerBtn} onPress={() => console.log("Login")}>
+                    <TouchableOpacity style={styles.TouchableContainerBtn} onPress={ validate }>
                         <Text style={styles.TouchableElementBtn}>Continuar</Text>
                     </TouchableOpacity>
                 </View>
