@@ -1,51 +1,54 @@
 import React, { useState } from "react";
-import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Image, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
 import styles from "./styles";
 import LogoInitial from "../../components/LogoInitial/LogoInitial";
+import InputForm from "../../components/InputFom/InputForm";
+import MessageForm from "../../components/MessageForm/MessageForm";
 
-export default function Login({ navigation }){
+export default function Login({ navigation }) {
     const [email, onChangeEmail] = useState('');
     const [senha, onChangeSenha] = useState('');
-    const [isFocusedEmail, setIsFocusedEmail] = useState(false);
-    const [isFocusedSenha, setIsFocusedSenha] = useState(false);
+    const [message, setMessage] = useState("")
+
+    validate = () => {
+        if (email == "" || senha == "") {
+            setMessage("Os campos não podem ser vazios!")
+            return
+        } else  setMessage("")
+        
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            setMessage("Insira um email válido")
+            return
+        }
+
+        console.log("OK")
+    }
 
     return (
         <View>
             <LogoInitial marginTop={130} />
-            <View>
-                <Text style={styles.inputLabel}>Email</Text>
-                <TextInput
-                    placeholder="Email"
-                    style={[styles.input, { borderColor: isFocusedEmail ? 'black' : '#CECCCC' }]}
-                    onFocus={() => setIsFocusedEmail(true)}
-                    onBlur={() => setIsFocusedEmail(false)}
-                    onChangeText={onChangeEmail}
-                    value={email}></TextInput>
+            <ScrollView showsVerticalScrollIndicator={false}>
 
-                <Text style={styles.inputLabel}>Senha</Text>
-                <TextInput
-                    placeholder="Senha"
-                    secureTextEntry={true}
-                    style={[styles.input, { borderColor: isFocusedSenha ? 'black' : '#CECCCC' }]}
-                    onFocus={() => setIsFocusedSenha(true)}
-                    onBlur={() => setIsFocusedSenha(false)}
-                    onChangeText={onChangeSenha}
-                    value={senha} ></TextInput>
+                <MessageForm message={message}/>
+                <InputForm label="Email" placeholder="Email" onChange={(text) => onChangeEmail(text)} />
 
-                <TouchableOpacity style={[styles.TouchableContainerLink,{marginTop:20}]} onPress={ ()=> navigation.navigate("RememberPassword")}>
+                <InputForm label="Senha" placeholder="Senha" isSecurity={true} onChange={text => onChangeSenha(text)} />
+
+                <TouchableOpacity style={[styles.TouchableContainerLink, { marginTop: 20 }]} onPress={() => navigation.navigate("RememberPassword")}>
                     <Text style={styles.TouchableElementLink}>Esqueceu a senha?</Text>
                 </TouchableOpacity>
 
                 <View style={styles.BtnContainer}>
-                    <TouchableOpacity style={styles.TouchableContainerBtn} onPress={()=> console.log("Login")}>
+                    <TouchableOpacity style={styles.TouchableContainerBtn} onPress={validate}>
                         <Text style={styles.TouchableElementBtn}>Fazer Login</Text>
                     </TouchableOpacity>
                 </View>
-                
-                <TouchableOpacity style={[styles.TouchableContainerLink,{marginTop:50}]} onPress={()=> navigation.navigate("Cadastro")}>
+
+                <TouchableOpacity style={[styles.TouchableContainerLink, { marginTop: 50 }]} onPress={() => navigation.navigate("Cadastro")}>
                     <Text style={styles.TouchableElementLink}>Ainda não possui conta? Cadastre-se aqui!</Text>
                 </TouchableOpacity>
-            </View>
+            </ScrollView>
         </View>
     )
 }
