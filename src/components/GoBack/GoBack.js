@@ -5,7 +5,7 @@ import { StyleSheet, TouchableOpacity, View } from 'react-native'
 
 export default props => {
     return (
-        <View>
+        <View style={{backgroundColor: 'transparent'}}>
             <TouchableOpacity onPress={() => props.navigation.goBack()}>
                 <Image style={styles.backButton} source={require('../../../assets/buttons/backButton.png')} />
             </TouchableOpacity>

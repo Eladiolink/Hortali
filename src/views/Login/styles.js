@@ -40,13 +40,15 @@ export default StyleSheet.create({
     },
     TouchableContainerBtn: {
         alignItems: "center",
+        justifyContent:"center",
         backgroundColor: "#CECCCC",
         width: 115,
+        height: 40,
         borderRadius: 50
     },
     TouchableElementBtn: {
         color: "black",
         fontFamily: "Poppins-ExtraLight",
         fontSize: 18
-    }
+    },
 })

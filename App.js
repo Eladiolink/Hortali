@@ -7,6 +7,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import EsqueceuSenha from "./src/views/EsqueceuSenha/EsqueceuSenha";
 import Cadastro from "./src/views/Cadastro/Cadastro";
+import CadastroContinuacao from "./src/views/Cadastro/CadastroContinuacao";
 
 
 const Stack = createStackNavigator()
@@ -24,10 +25,11 @@ export default App = () => {
     <SafeAreaView style={styles.container}>
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown: false }}  >
-          <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="RememberPassword" component={EsqueceuSenha} />
+          <Stack.Screen name="Login" component={Cadastro} />
           <Stack.Screen name="Cadastro" component={Cadastro} />
-        </Stack.Navigator>
+          <Stack.Screen name="CadastroContinuacao" component={CadastroContinuacao} />
+          <Stack.Screen name="RememberPassword" component={EsqueceuSenha} />
+         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>
   );
