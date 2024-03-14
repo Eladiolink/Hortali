@@ -44,6 +44,8 @@ export default ({ navigation }) => {
         }
 
         console.log("OK")
+
+        navigation.navigate("TelaContrato")
     }
 
     return (
