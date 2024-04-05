@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Image, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import styles from "./styles";
 import LogoInitial from "../../components/LogoInitial/LogoInitial";
 import InputForm from "../../components/InputFom/InputForm";
@@ -14,8 +14,8 @@ export default function Login({ navigation }) {
         if (email == "" || senha == "") {
             setMessage("Os campos não podem ser vazios!")
             return
-        } else  setMessage("")
-        
+        } else setMessage("")
+
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
             setMessage("Insira um email válido")
@@ -30,7 +30,7 @@ export default function Login({ navigation }) {
             <LogoInitial marginTop={130} />
             <ScrollView showsVerticalScrollIndicator={false}>
 
-                <MessageForm message={message}/>
+                <MessageForm message={message} />
                 <InputForm label="Email" placeholder="Email" onChange={(text) => onChangeEmail(text)} />
 
                 <InputForm label="Senha" placeholder="Senha" isSecurity={true} onChange={text => onChangeSenha(text)} />
