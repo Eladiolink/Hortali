@@ -20,6 +20,8 @@ export default App = () => {
     "Poppins-ExtraLight": require("./assets/fonts/Poppins-ExtraLight.ttf"),
     "Poppins-Light": require("./assets/fonts/Poppins-Light.ttf"),
     "Poppins-Regular": require("./assets/fonts/Poppins-Regular.ttf"),
+    "Sora-Regular": require("./assets/fonts/Sora-Regular.ttf"),
+    "Sora-SemiBold": require("./assets/fonts/Sora-SemiBold.ttf")
   });
 
 
