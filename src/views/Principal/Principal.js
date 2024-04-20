@@ -17,6 +17,17 @@ export default () => {
         screenOptions={{ headerShown: false, tabBarActiveTintColor: "#7DBA07", tabBarIconStyle: { width: 38, height: 38 }, }}
       >
         <Tab.Screen
+          name="Carrinho"
+          component={Carrinho}
+          options={{
+            tabBarLabel: () => (null),
+            tabBarIcon: ({ color, size }) => (
+              <FontAwesome name="shopping-cart" size={size} color={color} />
+            ),
+          }}
+        />
+        
+        <Tab.Screen
           name="Home"
           component={Home}
           options={{
@@ -37,16 +48,7 @@ export default () => {
             ),
           }}
         />
-        <Tab.Screen
-          name="Carrinho"
-          component={Carrinho}
-          options={{
-            tabBarLabel: () => (null),
-            tabBarIcon: ({ color, size }) => (
-              <FontAwesome name="shopping-cart" size={size} color={color} />
-            ),
-          }}
-        />
+        
       </Tab.Navigator>
     </NavigationContainer>
   )

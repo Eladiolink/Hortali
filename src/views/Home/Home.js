@@ -4,9 +4,10 @@ import { FontAwesome, SimpleLineIcons, Ionicons, AntDesign } from '@expo/vector-
 import styles from "../Login/styles";
 import Product from "../../components/principal/Product/Product";
 import Filter from "../../components/principal/Filter/Filter";
+import BellNotification from "../../components/BellNotification/BellNotification";
 export default () => {
   const data = ['Cenoura', 'Cenoura Laranja', 'Cenoura Cenoura', 'Cenoura Cenoura', 'Cenoura Cenoura', 'Cenoura Cenoura', 'Cenoura Cenoura'];
-  const filter = [{ item: "Fruta", enable: true}, { item: "Verdura", enable: false}, { item: "Vegetal", enable: false}, { item: "Fruta", enable: false}, { item: "Fruta", enable: false}, { item: "Fruta", enable:false}];
+  const filter = [{ item: "Fruta", enable: true }, { item: "Verdura", enable: false }, { item: "Vegetal", enable: false }, { item: "Fruta", enable: false }, { item: "Fruta", enable: false }, { item: "Fruta", enable: false }];
   var countNotifications = 2
   return (
     <>
@@ -21,10 +22,8 @@ export default () => {
               <SimpleLineIcons style={[{ marginLeft: 10 }]} name="arrow-down" size={14} color="#FFFFFF" />
             </View>
           </View>
-          <TouchableOpacity>
-            { countNotifications > 0 && <View style={Styles.bellNotificationContainer}><Text style={[{color:"#FFFFFF",lineHeight:16}]}>{countNotifications}</Text></View>}
-            <FontAwesome name="bell" color={"black"} size={30} />
-          </TouchableOpacity>
+          
+          <BellNotification number={5} />
         </View>
 
         {/* Search Input */}
@@ -84,7 +83,7 @@ const Styles = StyleSheet.create({
   locationBell: {
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems:"center"
+    alignItems: "center"
   },
   location: {
     flexDirection: "column",
@@ -135,18 +134,7 @@ const Styles = StyleSheet.create({
     justifyContent: "center"
   },
 
-  bellNotificationContainer:{
-      width:14,
-      height:14,
-      backgroundColor:"#FF9900",
-      borderRadius:50,
-      justifyContent:"center",
-      alignItems:"center",
-      position:"absolute",
-      zIndex:2,
-      top:-10,
-      left:20
-  },
+
   // Filter
   filterContainer: {
     height: 45,
