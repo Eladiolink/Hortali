@@ -21,7 +21,9 @@ export default App = () => {
     "Poppins-Light": require("./assets/fonts/Poppins-Light.ttf"),
     "Poppins-Regular": require("./assets/fonts/Poppins-Regular.ttf"),
     "Sora-Regular": require("./assets/fonts/Sora-Regular.ttf"),
-    "Sora-SemiBold": require("./assets/fonts/Sora-SemiBold.ttf")
+    "Sora-SemiBold": require("./assets/fonts/Sora-SemiBold.ttf"),
+    "Sora-Bold": require("./assets/fonts/Sora-Bold.ttf")
+
   });
 
 
