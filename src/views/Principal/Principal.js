@@ -9,6 +9,7 @@ const Tab = createBottomTabNavigator();
 import Home from "../Home/Home";
 import Favoritos from "../Favoritos/Favoritos";
 import Carrinho from "../Carrinho/Carrinho";
+import Detalhes from "../Detalhes/Detalhes";
 
 export default () => {
   return (
@@ -16,6 +17,17 @@ export default () => {
       <Tab.Navigator
         screenOptions={{ headerShown: false, tabBarActiveTintColor: "#7DBA07", tabBarIconStyle: { width: 38, height: 38 }, }}
       >
+        <Tab.Screen
+          name="Favoritos"
+          component={Detalhes}
+          options={{
+            tabBarLabel: () => (null),
+            tabBarIcon: ({ color, size }) => (
+              <MaterialIcons name="favorite" size={size} color={color} />
+            ),
+          }}
+        />
+
         <Tab.Screen
           name="Carrinho"
           component={Carrinho}
@@ -26,7 +38,7 @@ export default () => {
             ),
           }}
         />
-        
+
         <Tab.Screen
           name="Home"
           component={Home}
@@ -38,17 +50,7 @@ export default () => {
           }
           }
         />
-        <Tab.Screen
-          name="Favoritos"
-          component={Favoritos}
-          options={{
-            tabBarLabel: () => (null),
-            tabBarIcon: ({ color, size }) => (
-              <MaterialIcons name="favorite" size={size} color={color} />
-            ),
-          }}
-        />
-        
+
       </Tab.Navigator>
     </NavigationContainer>
   )
