@@ -6,13 +6,16 @@ import Line from "../../components/Carrinho/Line";
 import GoBack from "../../components/GoBack/GoBack";
 
 
-export default () => {
+export default ({navigation,route}) => {
+    const { data } = route.params;
+
+    console.log(data.id)
     return (
         <>
             {/* Top */}
             <View style={styles.backgroundTop}>
                 {/* Location and Bell Notification */}
-                <View style={[{justifyContent:"center"}]}><GoBack mt={0} navigation={null} /></View>
+                <View style={[{justifyContent:"center"}]}><GoBack mt={0} navigation={navigation} /></View>
                 <Text style={styles.topTest}>Detalhes</Text>
                 <BellNotification number={5} />
             </View>

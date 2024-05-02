@@ -5,7 +5,12 @@ import styles from "../Login/styles";
 import Product from "../../components/principal/Product/Product";
 import Filter from "../../components/principal/Filter/Filter";
 import BellNotification from "../../components/BellNotification/BellNotification";
-export default () => {
+import { createStackNavigator } from "@react-navigation/stack";
+import Detalhes from "../Detalhes/Detalhes";
+
+const Stack = createStackNavigator()
+
+export default ({ navigation }) => {
   const data = ['Cenoura', 'Cenoura Laranja', 'Cenoura Cenoura', 'Cenoura Cenoura', 'Cenoura Cenoura', 'Cenoura Cenoura', 'Cenoura Cenoura'];
   const filter = [{ item: "Fruta", enable: true }, { item: "Verdura", enable: false }, { item: "Vegetal", enable: false }, { item: "Fruta", enable: false }, { item: "Fruta", enable: false }, { item: "Fruta", enable: false }];
   var countNotifications = 2
@@ -54,10 +59,10 @@ export default () => {
             if (index % 2 === 0) {
               return (
                 <View key={index} style={[{ flexDirection: "row" }]}>
-                  <Product />
+                  <Product  navigation = {navigation} />
                   {/* Verifica se existe um próximo item antes de renderizá-lo */}
                   {index + 1 < data.length && (
-                    <Product />
+                    <Product  navigation = {navigation}  />
                   )}
                 </View>
               );
@@ -67,7 +72,6 @@ export default () => {
           })}
 
         </ScrollView>
-
 
       </View>
     </>
