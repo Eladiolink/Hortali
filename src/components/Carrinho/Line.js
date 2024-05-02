@@ -1,13 +1,13 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 
-export default () => {
+export default ({ph, color, mv} = props) => {
 
 
     return (
         <>
-            <View style={[{paddingHorizontal:32,marginVertical: 25}]}>
-                <View style={styles.line}></View>
+            <View style={[{paddingHorizontal:ph ? ph : 32,marginVertical: mv ? mv : 25}]}>
+                <View style={[styles.line,{backgroundColor: color? color : "#B7B7B7"}]}></View>
             </View>
 
         </>
@@ -17,8 +17,7 @@ export default () => {
 const styles = StyleSheet.create({
     line: {
         height: 0.75,
-        width: "100%",
-        backgroundColor: "#B7B7B7"
+        width: "100%", 
     }
 })
 

@@ -1,11 +1,11 @@
 import React from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-export default () => {
+export default ({navigation}) => {
 
     return (
         <>
             <View style={Styles.productContainer}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate("Detalhes",{data:{id:10}})}>
                     <Image style={Styles.imageProduct} source={{ uri: "https://www.infoescola.com/wp-content/uploads/2010/08/cenoura_250834906.jpg" }} />
                 </TouchableOpacity>
                 <View style={Styles.infosContainer}>

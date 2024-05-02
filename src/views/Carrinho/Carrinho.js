@@ -55,6 +55,8 @@ export default () => {
             <Text style={styles.buttonText}>Continuar</Text>
           </TouchableOpacity>
         </View>
+
+        
       </ScrollView>
 
     </>
