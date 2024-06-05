@@ -16,8 +16,7 @@ export default () => {
 
             {/* Coisas */}
             <View style={[{ flex: 1 }]}>
-
-
+                
             </View>
         </>
     )
