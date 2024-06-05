@@ -10,7 +10,9 @@ import Cadastro from "./src/views/Cadastro/Cadastro";
 import CadastroContinuacao from "./src/views/Cadastro/CadastroContinuacao";
 import TelaContrato from "./src/views/TelaContrato/TelaContrato";
 import Retorno from "./src/views/TelaContrato/Retorno";
-import Principal from "./src/views/Principal/Principal";
+import Favoritos from "./src/views/Favoritos/Favoritos";
+import Carrinho from "./src/views/Carrinho/Carrinho";
+//import Principal from "./src/views/Principal/Principal";
 
 
 const Stack = createStackNavigator()
@@ -29,7 +31,7 @@ export default App = () => {
 
   if (!fontsLoaded) return null
   var login = true
-  if (login) {
+  if (!login) {
     return (
       <SafeAreaView style={styles.container}>
         <Principal></Principal>
@@ -43,7 +45,7 @@ export default App = () => {
         <NavigationContainer>
           <Stack.Navigator screenOptions={{ headerShown: false }}  >
 
-            <Stack.Screen name="Login" component={Login} />
+            <Stack.Screen name="Login" component={Favoritos} />
             <Stack.Screen name="Cadastro" component={Cadastro} />
             <Stack.Screen name="CadastroContinuacao" component={CadastroContinuacao} />
             <Stack.Screen name="RememberPassword" component={EsqueceuSenha} />
