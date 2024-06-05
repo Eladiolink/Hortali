@@ -12,7 +12,8 @@ import TelaContrato from "./src/views/TelaContrato/TelaContrato";
 import Retorno from "./src/views/TelaContrato/Retorno";
 import Principal from "./src/views/Principal/Principal";
 import Detalhes from "./src/views/Detalhes/Detalhes";
-
+import Favoritos from "./src/views/Favoritos/Favoritos";
+import Carrinho from "./src/views/Carrinho/Carrinho";
 
 const Stack = createStackNavigator()
 
@@ -30,32 +31,38 @@ export default App = () => {
 
   if (!fontsLoaded) return null
   var login = true
+  if (!login) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <Principal></Principal>
+      </SafeAreaView>
+    )
+  } else {
+    return (
+      <SafeAreaView style={styles.container}>
+        <NavigationContainer>
+          <Stack.Navigator screenOptions={{ headerShown: false }}  >
+
+            {login ? (
+              <Stack.Screen name="Principal" component={Principal} />
+            ) : (
+              <Stack.Screen name="Login" component={Login} />
+            )}
 
 
-  return (
-    <SafeAreaView style={styles.container}>
-      <NavigationContainer>
-        <Stack.Navigator screenOptions={{ headerShown: false }}  >
+            <Stack.Screen name="Cadastro" component={Cadastro} />
+            <Stack.Screen name="CadastroContinuacao" component={CadastroContinuacao} />
+            <Stack.Screen name="RememberPassword" component={EsqueceuSenha} />
+            <Stack.Screen name="TelaContrato" component={TelaContrato} />
+            <Stack.Screen name="Retorno" component={Retorno} />
+            <Stack.Screen name="Detalhes" component={Detalhes} />
 
-         {login ? (
-            <Stack.Screen name="Principal" component={Principal} />
-          ) : ( 
-            <Stack.Screen name="Login" component={Login} />
-          )}
+          </Stack.Navigator>
+        </NavigationContainer>
+      </SafeAreaView>
+    );
 
-        
-          <Stack.Screen name="Cadastro" component={Cadastro} />
-          <Stack.Screen name="CadastroContinuacao" component={CadastroContinuacao} />
-          <Stack.Screen name="RememberPassword" component={EsqueceuSenha} />
-          <Stack.Screen name="TelaContrato" component={TelaContrato} />
-          <Stack.Screen name="Retorno" component={Retorno} />
-          <Stack.Screen name="Detalhes" component={Detalhes} />
-
-        </Stack.Navigator>
-      </NavigationContainer>
-    </SafeAreaView>
-  );
-
+  }
 };
 
 const styles = StyleSheet.create({
