@@ -7,16 +7,18 @@ const Tab = createBottomTabNavigator();
 import Home from "../Home/Home";
 import Carrinho from "../Carrinho/Carrinho";
 import Favoritos from "../Favoritos/Favoritos";
+import Perfil from "../Perfil/Perfil";
 
 export default ({ navigation }) => {
   return (
     <Tab.Navigator
-      screenOptions={{ headerShown: false, tabBarActiveTintColor: "#7DBA07", tabBarIconStyle: { width: 38, height: 38 },
-    }}
+      screenOptions={{
+        headerShown: false, tabBarActiveTintColor: "#7DBA07", tabBarIconStyle: { width: 38, height: 38 },
+      }}
     >
-        <Tab.Screen
+      <Tab.Screen
         name="Home"
-        component={Home}
+        component={Perfil}
         options={{
           tabBarLabel: () => (null),
           tabBarIcon: ({ color, size }) => (
@@ -44,6 +46,17 @@ export default ({ navigation }) => {
           tabBarLabel: () => (null),
           tabBarIcon: ({ color, size }) => (
             <FontAwesome name="shopping-cart" size={size} color={color} />
+          ),
+        }}
+      />
+
+      <Tab.Screen
+        name="Perfil"
+        component={Perfil}
+        options={{
+          tabBarLabel: () => (null),
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome name="user-circle-o" size={size} color={color} />
           ),
         }}
       />
