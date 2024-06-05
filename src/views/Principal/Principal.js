@@ -18,7 +18,7 @@ export default ({ navigation }) => {
     >
       <Tab.Screen
         name="Home"
-        component={Perfil}
+        component={Home}
         options={{
           tabBarLabel: () => (null),
           tabBarIcon: ({ color, size }) => (
