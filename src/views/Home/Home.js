@@ -1,4 +1,3 @@
-import React from "react";
 import { StyleSheet, Text, TextInput, TouchableOpacity, View, ScrollView } from "react-native";
 import { FontAwesome, SimpleLineIcons, Ionicons, AntDesign } from '@expo/vector-icons'; // ou a biblioteca de ícones de sua preferência
 import styles from "../Login/styles";
@@ -6,14 +5,23 @@ import Product from "../../components/principal/Product/Product";
 import Filter from "../../components/principal/Filter/Filter";
 import BellNotification from "../../components/BellNotification/BellNotification";
 import { createStackNavigator } from "@react-navigation/stack";
+import React, { useState } from "react";
 import Detalhes from "../Detalhes/Detalhes";
 
 const Stack = createStackNavigator()
 
 export default ({ navigation }) => {
-  const data = ['Cenoura', 'Cenoura Laranja', 'Cenoura Cenoura', 'Cenoura Cenoura', 'Cenoura Cenoura', 'Cenoura Cenoura', 'Cenoura Cenoura'];
+  const [termoBusca, setTermoBusca] = useState('');
+  const data = ['Maça', 'Cenoura Laranja', 'Cenoura Cenoura', 'Cenoura Cenoura', 'Cenoura Cenoura', 'Cenoura Cenoura', 'Cenoura Cenoura', 'Cenoura Cenoura'];
   const filter = [{ item: "Fruta", enable: true }, { item: "Verdura", enable: false }, { item: "Vegetal", enable: false }, { item: "Fruta", enable: false }, { item: "Fruta", enable: false }, { item: "Fruta", enable: false }];
   var countNotifications = 2
+
+  const dataFiltrada = data.filter(item => {
+    const itemMinusculo = item.toLowerCase();
+    const termoMinusculo = termoBusca.toLowerCase();
+    return itemMinusculo.includes(termoMinusculo);
+  });
+
   return (
     <>
       {/* Top */}
@@ -37,7 +45,12 @@ export default ({ navigation }) => {
             <TouchableOpacity style={styles.SearchIcon}>
               <AntDesign name="search1" size={24} color="#7DBA07" />
             </TouchableOpacity>
-            <TextInput placeholder="Pesquisar" style={Styles.inputSearch} />
+            <TextInput 
+              placeholder="Pesquisar" 
+             style={Styles.inputSearch} 
+             value={termoBusca} 
+            onChangeText={setTermoBusca} 
+/>
             <TouchableOpacity style={Styles.BtnsContainer}>
               <Ionicons name="filter" size={24} color="#FFFFFF" />
             </TouchableOpacity>
@@ -54,22 +67,25 @@ export default ({ navigation }) => {
 
         {/* Products */}
         <ScrollView vertical showsVerticalScrollIndicator={false} style={Styles.productsContainer}>
-
-          {data.map((item, index) => {
+          {dataFiltrada.length === 0 ? (
+            <Text style={Styles.noProductMessage}>Nenhum produto encontrado.</Text>
+          ) : (
+            dataFiltrada.map((item, index) => {
             if (index % 2 === 0) {
               return (
-                <View key={index} style={[{ flexDirection: "row" }]}>
-                  <Product  navigation = {navigation} />
+                <View key={index} style={{ flexDirection: 'row' }}>
+                  <Product key={index} navigation = {navigation} />
                   {/* Verifica se existe um próximo item antes de renderizá-lo */}
-                  {index + 1 < data.length && (
-                    <Product  navigation = {navigation}  />
+                  {index + 1 < dataFiltrada.length && (
+                    <Product key={index + 1} navigation = {navigation}  />
                   )}
                 </View>
               );
             }
             // Retorna null para índices ímpares
             return null;
-          })}
+          })
+        )}
 
         </ScrollView>
 
